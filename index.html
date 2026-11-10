@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Clément CHARPENTIER, directeur de la photographie</title>
-<meta name="description" content="Portfolio de directeur de la photographie : showreel et projets.">
+<title>Clément Charpentier, directeur de la photographie</title>
+<meta name="description" content="Clément Charpentier, étudiant à l'EICAR et directeur de la photographie : projets et stills.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -118,26 +118,19 @@ dialog .x{position:fixed;top:1rem;right:1.25rem;font-size:1rem}
 <script>
 /* ============ À MODIFIER : tout le contenu est ici ============ */
 const CONFIG = {
-  nom: "Clément CHARPENTIER",
-  role: "Directeur de la photographie. Fiction, clip et publicité.",
-  email: "contact@votrenom.fr",
-  liens: [{ label: "Instagram", url: "https://instagram.com/" }, { label: "Vimeo", url: "https://vimeo.com/" }],
+  nom: "Clément Charpentier",
+  role: "Étudiant à l'EICAR, directeur de la photographie en court métrage.",
+  email: "clement.charpentier@eicar.fr",
+  liens: [],     // ex. { label: "Instagram", url: "https://instagram.com/ton-compte" }
   hero: "",       // image d'ouverture, ex. "images/hero.jpg"
   showreel: "",   // lien d'intégration : player.vimeo.com/video/XXXX ou youtube.com/embed/XXXX
   // Par projet : image + ratio (largeur/hauteur), fiche technique, stills (ratio de chaque still : 1.78 par défaut). Un champ vide n'est pas affiché.
   projets: [
-    { titre: "Titre du court métrage", annee: "2026", realisateur: "Nom du réalisateur", camera: "Nom de la caméra",
-      optiques: "Série d'optiques", format: "2.39:1", lien: "",
-      image: "", ratio: 2.39, stills: [{ src: "", alt: "Still", ratio: 1.78 }, { src: "", alt: "Still", ratio: 0.8 }, { src: "", alt: "Still", ratio: 1.5 }] },
-    { titre: "Titre du clip", annee: "2025", realisateur: "Nom du réalisateur", camera: "Nom de la caméra",
-      optiques: "", format: "16:9", lien: "",
-      image: "", ratio: 1.78, stills: [{ src: "", alt: "Still", ratio: 2.39 }, { src: "", alt: "Still", ratio: 1.0 }] },
-    { titre: "Titre de la publicité", annee: "2025", realisateur: "Nom du réalisateur", camera: "Nom de la caméra",
-      optiques: "", format: "2.39:1", lien: "",
-      image: "", ratio: 2.39, stills: [] },
-    { titre: "Titre du documentaire", annee: "2024", realisateur: "Nom du réalisateur", camera: "Nom de la caméra",
-      optiques: "", format: "16:9", lien: "",
-      image: "", ratio: 1.78, stills: [{ src: "", alt: "Still", ratio: 1.78 }] }
+    { titre: "JIGOKU NO HATE, KYODAI", annee: "2026", realisateur: "Hector Castel",
+      camera: "Blackmagic Pocket Cinema Camera 4K", optiques: "35–75 mm", format: "2.39:1",
+      lien: "https://www.youtube.com/watch?v=_iEB1BQn2I8",
+      image: "", ratio: 2.39, stills: [] }
+    // Pour ajouter un projet : copie le bloc ci-dessus, ajoute une virgule après son } et colle-le en dessous.
   ]
 };
 /* ============================================================== */
@@ -199,10 +192,11 @@ $("projets").addEventListener("click", e => {
   const t = e.target.closest("[data-p]");
   if (t) show(Number(t.dataset.p), Number(t.dataset.i || 0));
 });
+$("btnReel").hidden = !CONFIG.showreel;
 $("btnReel").addEventListener("click", () => {
   box.innerHTML = CONFIG.showreel
     ? `<iframe src="${esc(CONFIG.showreel)}?autoplay=1" title="Showreel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
-    : `<p class="msg">Showreel à venir. Ajoutez le lien d'intégration dans CONFIG.showreel.</p>`;
+    : `<p class="msg">Showreel bientôt disponible.</p>`;
   lb.showModal();
 });
 
