@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Votre Nom, directeur de la photographie</title>
+<meta name="description" content="Portfolio de directeur de la photographie : showreel et projets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#161512; --ink:#e8e4d9; --mute:#8d897c; --line:#2b2924; --sage:#a3ad92;
+  --font:"Jost","Futura","Century Gothic",system-ui,sans-serif;
+  --pad:clamp(1.25rem,4vw,3.5rem);
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{font:400 1rem/1.6 var(--font);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+a,button{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--sage);outline-offset:4px}
+
+.top{position:fixed;inset:0 0 auto;z-index:5;display:flex;justify-content:space-between;align-items:center;
+  padding:1.4rem var(--pad);background:linear-gradient(rgba(14,13,11,.75),transparent)}
+.top nav{display:flex;gap:clamp(1rem,3vw,2.25rem)}
+.top a,.top button{background:none;border:0;font:inherit;cursor:pointer;opacity:.8;transition:opacity .2s}
+.top a:hover,.top button:hover{opacity:1}
+.top .logo{opacity:1;font-weight:500;letter-spacing:.02em}
+
+.hero{position:relative;height:100svh;min-height:520px;overflow:hidden}
+.hero .media{position:absolute;inset:0}
+.hero .media img{width:100%;height:100%;object-fit:cover;display:block}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(22,21,18,.92),transparent 55%);pointer-events:none}
+.hero .txt{position:absolute;z-index:1;left:var(--pad);right:var(--pad);bottom:clamp(1.5rem,5vw,3.5rem)}
+h1{font:300 clamp(3rem,12vw,10.5rem)/.9 var(--font);letter-spacing:-.035em}
+.role{margin-top:1.25rem;max-width:40ch;opacity:.85}
+
+.frame{margin:0;background:#201f1a;overflow:hidden;cursor:zoom-in}
+.frame img{display:block;width:100%;height:100%;object-fit:cover}
+.ph{position:relative;width:100%;height:100%;background:
+  radial-gradient(ellipse 60% 70% at var(--x,30%) var(--y,40%),rgba(163,173,146,.3),transparent 70%),
+  radial-gradient(ellipse 50% 60% at calc(100% - var(--x,30%)) 78%,rgba(196,160,110,.2),transparent 70%),
+  radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.6) 100%),var(--t,#26241e)}
+.ph::after{content:"";position:absolute;inset:0;background:var(--grain);opacity:.17;mix-blend-mode:overlay}
+.hero .ph{cursor:default}
+
+/* Fiche de projet (commune aux dispositions) */
+.cap{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.cap h2{font:400 clamp(1.5rem,3vw,2.4rem)/1.1 var(--font);letter-spacing:-.02em}
+.cap h2 a:hover{color:var(--sage)}
+.cap .y{color:var(--mute)}
+.row{margin-top:.7rem;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem 2rem}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem 2.25rem;list-style:none;padding:0}
+.meta span{display:block;color:var(--mute);font-size:.8rem}
+.meta li{font-size:.95rem}
+
+/* Mise en page éditoriale : grandes images décalées, fiche sur le côté */
+#projets{padding:6rem var(--pad) 1rem}
+.proj{display:grid;grid-template-columns:minmax(0,7fr) minmax(200px,3fr);gap:clamp(1.5rem,4vw,4rem);align-items:end;margin-bottom:clamp(5rem,12vw,10rem)}
+.proj:nth-child(even){grid-template-columns:minmax(200px,3fr) minmax(0,7fr)}
+.proj:nth-child(even) .visuals{order:2}
+.visuals{display:flex;flex-direction:column;gap:6px;min-width:0}
+.frame{aspect-ratio:var(--r)}
+.stills{display:flex;flex-wrap:wrap;gap:6px}
+.stills .frame{flex:var(--r) 1 calc(var(--r) * 120px);min-width:0}
+.cap{display:block}
+.cap .y{display:block;margin-top:.25rem}
+.row{display:block}
+.meta{flex-direction:column;gap:.7rem;margin-bottom:1.25rem}
+
+@media (max-width:700px){
+  .proj,.proj:nth-child(even){grid-template-columns:1fr}
+  .proj:nth-child(even) .visuals{order:0}
+}
+
+.contact{padding:clamp(5rem,14vw,10rem) var(--pad) 3rem}
+.mail{display:inline-block;font:300 clamp(1.8rem,7vw,5.5rem)/1.1 var(--font);letter-spacing:-.025em;transition:color .2s}
+.mail:hover{color:var(--sage)}
+.links{display:flex;gap:2rem;margin-top:2rem;color:var(--mute)}
+.links a:hover{color:var(--ink)}
+footer{padding:0 var(--pad) 2rem;color:var(--mute);font-size:.85rem}
+
+dialog{border:0;background:transparent;max-width:96vw;max-height:96vh;padding:0;overflow:visible}
+dialog::backdrop{background:rgba(10,9,8,.95)}
+dialog img{max-width:92vw;max-height:84vh;display:block;margin:0 auto}
+dialog iframe{width:min(96vw,1400px);aspect-ratio:16/9;border:0;display:block}
+dialog .big{width:min(92vw,1200px);aspect-ratio:16/9}
+dialog .msg{color:var(--mute);padding:2rem}
+dialog .nav{display:flex;justify-content:center;align-items:center;gap:1.5rem;margin-top:1rem;color:var(--mute)}
+dialog button{background:none;border:0;color:var(--ink);font:inherit;font-size:1.4rem;cursor:pointer;padding:.25rem .75rem}
+dialog .x{position:fixed;top:1rem;right:1.25rem;font-size:1rem}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div class="top">
+  <a class="logo" href="#" id="logo"></a>
+  <nav><button type="button" id="btnReel">Showreel</button><a href="#projets">Projets</a><a href="#contact">Contact</a></nav>
+</div>
+
+<section class="hero">
+  <div class="media" id="heroMedia"></div>
+  <div class="txt"><h1 id="nom"></h1><p class="role" id="role"></p></div>
+</section>
+
+<main id="projets"></main>
+
+<section class="contact" id="contact">
+  <a class="mail" id="mail"></a>
+  <div class="links" id="liens"></div>
+</section>
+<footer id="pied"></footer>
+
+<dialog id="lb"><button type="button" class="x">Fermer</button><div id="lbc"></div></dialog>
+
+<script>
+/* ============ À MODIFIER : tout le contenu est ici ============ */
+const CONFIG = {
+  nom: "Votre Nom",
+  role: "Directeur de la photographie. Fiction, clip et publicité.",
+  email: "contact@votrenom.fr",
+  liens: [{ label: "Instagram", url: "https://instagram.com/" }, { label: "Vimeo", url: "https://vimeo.com/" }],
+  hero: "",       // image d'ouverture, ex. "images/hero.jpg"
+  showreel: "",   // lien d'intégration : player.vimeo.com/video/XXXX ou youtube.com/embed/XXXX
+  // Par projet : image + ratio (largeur/hauteur), fiche technique, stills (ratio de chaque still : 1.78 par défaut). Un champ vide n'est pas affiché.
+  projets: [
+    { titre: "Titre du court métrage", annee: "2026", realisateur: "Nom du réalisateur", camera: "Nom de la caméra",
+      optiques: "Série d'optiques", format: "2.39:1", lien: "",
+      image: "", ratio: 2.39, stills: [{ src: "", alt: "Still", ratio: 1.78 }, { src: "", alt: "Still", ratio: 0.8 }, { src: "", alt: "Still", ratio: 1.5 }] },
+    { titre: "Titre du clip", annee: "2025", realisateur: "Nom du réalisateur", camera: "Nom de la caméra",
+      optiques: "", format: "16:9", lien: "",
+      image: "", ratio: 1.78, stills: [{ src: "", alt: "Still", ratio: 2.39 }, { src: "", alt: "Still", ratio: 1.0 }] },
+    { titre: "Titre de la publicité", annee: "2025", realisateur: "Nom du réalisateur", camera: "Nom de la caméra",
+      optiques: "", format: "2.39:1", lien: "",
+      image: "", ratio: 2.39, stills: [] },
+    { titre: "Titre du documentaire", annee: "2024", realisateur: "Nom du réalisateur", camera: "Nom de la caméra",
+      optiques: "", format: "16:9", lien: "",
+      image: "", ratio: 1.78, stills: [{ src: "", alt: "Still", ratio: 1.78 }] }
+  ]
+};
+/* ============================================================== */
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const look = [["25%","35%","#26241e"],["72%","30%","#232720"],["45%","60%","#2a2520"],["18%","65%","#22251f"],["80%","55%","#2b2822"]];
+let n = 0;
+const plan = () => { const l = look[n++ % look.length]; return `<div class="ph" style="--x:${l[0]};--y:${l[1]};--t:${l[2]}"></div>`; };
+
+document.title = CONFIG.nom + ", directeur de la photographie";
+$("logo").textContent = CONFIG.nom;
+$("nom").textContent = CONFIG.nom;
+$("role").textContent = CONFIG.role;
+$("pied").textContent = "© " + new Date().getFullYear() + " " + CONFIG.nom;
+$("heroMedia").innerHTML = CONFIG.hero ? `<img src="${esc(CONFIG.hero)}" alt="">` : plan();
+$("mail").textContent = CONFIG.email;
+$("mail").href = "mailto:" + CONFIG.email;
+$("liens").innerHTML = CONFIG.liens.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("");
+
+const G = CONFIG.projets.map(p => [{ src: p.image, alt: p.titre }].concat(p.stills || []));
+
+$("projets").innerHTML = CONFIG.projets.map((p, k) => {
+  const titre = p.lien ? `<a href="${esc(p.lien)}" target="_blank" rel="noopener">${esc(p.titre)}</a>` : esc(p.titre);
+  const meta = [["Réalisation", p.realisateur], ["Caméra", p.camera], ["Optiques", p.optiques], ["Format", p.format]]
+    .filter(r => r[1]).map(r => `<li><span>${r[0]}</span>${esc(r[1])}</li>`).join("");
+  const img = p.image ? `<img src="${esc(p.image)}" alt="${esc(p.titre)}" loading="lazy">` : plan();
+  const stills = (p.stills || []).length ? `<div class="stills">${p.stills.map((st, j) =>
+    `<figure class="frame" style="--r:${st.ratio || 1.78}" data-p="${k}" data-i="${j + 1}">${st.src ? `<img src="${esc(st.src)}" alt="${esc(st.alt || "")}" loading="lazy">` : plan()}</figure>`).join("")}</div>` : "";
+  return `<article class="proj" style="--r:${p.ratio || 2.39}">
+    <div class="visuals"><figure class="frame" data-p="${k}" data-i="0">${img}</figure>${stills}</div>
+    <div class="info"><div class="cap"><h2>${titre}</h2><span class="y">${esc(p.annee)}</span></div>
+    <div class="row"><ul class="meta">${meta}</ul></div></div>
+  </article>`;
+}).join("");
+
+// Fenêtre plein écran : galerie (flèches) et showreel
+const lb = $("lb"), box = $("lbc");
+let cur = { k: 0, i: 0 };
+const show = (k, i) => {
+  const list = G[k]; cur = { k, i: (i + list.length) % list.length };
+  const s = list[cur.i];
+  box.innerHTML = (s.src ? `<img src="${esc(s.src)}" alt="${esc(s.alt || "")}">` : `<div class="big">${plan()}</div>`) +
+    (list.length > 1 ? `<div class="nav"><button type="button" data-d="-1" aria-label="Précédent">‹</button><span>${cur.i + 1} / ${list.length}</span><button type="button" data-d="1" aria-label="Suivant">›</button></div>` : "");
+  if (!lb.open) lb.showModal();
+};
+lb.addEventListener("close", () => { box.innerHTML = ""; });
+lb.addEventListener("click", e => {
+  const d = e.target.closest("[data-d]");
+  if (d) return show(cur.k, cur.i + Number(d.dataset.d));
+  lb.close();
+});
+document.addEventListener("keydown", e => {
+  if (!lb.open || !box.querySelector(".nav")) return;
+  if (e.key === "ArrowRight") show(cur.k, cur.i + 1);
+  if (e.key === "ArrowLeft") show(cur.k, cur.i - 1);
+});
+$("projets").addEventListener("click", e => {
+  const t = e.target.closest("[data-p]");
+  if (t) show(Number(t.dataset.p), Number(t.dataset.i || 0));
+});
+$("btnReel").addEventListener("click", () => {
+  box.innerHTML = CONFIG.showreel
+    ? `<iframe src="${esc(CONFIG.showreel)}?autoplay=1" title="Showreel" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`
+    : `<p class="msg">Showreel à venir. Ajoutez le lien d'intégration dans CONFIG.showreel.</p>`;
+  lb.showModal();
+});
+
+</script>
+</body>
+</html>
